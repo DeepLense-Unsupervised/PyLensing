@@ -1,2 +1,1 @@
-# PyLensing
-A tool for generating lensing images based on PyAutoLens simulations
+This directory contains modules for generating strong lensing images based on PyAutoLens simulations. These modules could be helpful for tasks such as Machine Learning that require a large number of samples for a particular lensing configuration.
