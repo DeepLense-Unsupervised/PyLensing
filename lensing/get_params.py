@@ -1,3 +1,6 @@
+# Author: Pranath Reddy
+# This module is for generating all the different permutations of the parameters
+
 import numpy as np
 import pandas as pd
 import sys
@@ -7,6 +10,7 @@ import json
 # Decorator function
 def decorator_get_params(function):
     
+    # Wrapper function
     def wrapper_get_params(*args, **kwargs):
     
         base_params, number_of_samples = function(*args, **kwargs)

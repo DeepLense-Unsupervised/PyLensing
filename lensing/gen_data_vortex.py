@@ -1,3 +1,6 @@
+# Author: Pranath Reddy
+# This module is for generating galaxy-galaxy strong lensing images with vortex substructure
+
 import numpy as np
 import autolens as al
 import matplotlib.pyplot as plt
@@ -34,7 +37,7 @@ def gen_data(parameters,
             vortex_profiles.append(("dmh_profile",al.mp.SphericalIsothermal(centre=(params[8], params[9]), einstein_radius=params[10])))
             
             # Calculate the positional parameters for vortex substructure
-            resolution = 100 # no of sub halos to consider
+            resolution = 25 # no of sub halos to consider
             vortex_len = params[23]
             x_start = params[21] - (vortex_len/2*math.cos(math.radians(params[24])))
             y_start = params[22] - (vortex_len/2*math.sin(math.radians(params[24])))
@@ -99,6 +102,7 @@ def gen_data(parameters,
             imaging = simulator.from_tracer_and_grid(tracer=tracer, grid=grid)
             image = imaging.image.in_2d
 
+            # Export all the Lensing Images
             if output_type.lower() == 'image':
             
                 output_file = os.path.join(output_path, file_name + str(i+1) + '.png')
@@ -113,18 +117,21 @@ def gen_data(parameters,
     
     lensing_images = np.asarray(lensing_images)
     
+    # Dump all the Lensing Images into a numpy array
     if output_type.lower() == 'numpy':
     
         output_file = os.path.join(output_path, file_name + '.npy')
         np.save(output_file, lensing_images)
         print('Dimensions of the data: {}'.format(lensing_images.shape))
     
+    # Dump all the Lensing Images into a matlab (.MAT) file
     if output_type.lower() == 'matlab':
     
         output_file = os.path.join(output_path, file_name + '.mat')
         scipy.io.savemat(output_file, mdict={'vortex': lensing_images})
         print('Dimensions of the data: {}'.format(lensing_images.shape))
         
+    # Dump all the Lensing Images into a HDF file
     if output_type.lower() == 'hdf5':
     
         output_file = os.path.join(output_path, file_name + '.h5')

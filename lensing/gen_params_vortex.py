@@ -1,3 +1,6 @@
+# Author: Pranath Reddy
+# This module is for generating a default set of parameters for galaxy-galaxy strong lensing with vortex substructure
+
 import numpy as np
 import pandas as pd
 import json
