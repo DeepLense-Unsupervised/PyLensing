@@ -22,35 +22,36 @@ def gen_data(parameters,
              output_path='./lens_sub_spherical',
              file_name='particle'):
              
-             '''
-             
-             Args:
-             ______
-             
-             pixel_scales: float
-                The arc-second to pixel conversion factor of each pixel.
-             
-             psf_shape: []
-                Shape of the Gaussian kernel
-             
-             psf_sigma: float
-                Standard deviation for Gaussian kernel
-             
-             grid_sub_size: int
-                The size (sub_size x sub_size) of each unmasked pixels sub-grid.
-             
-             grid_shape: []
-             
-             output_type: str
-                'image': save the lensing images as .png files
-                'numpy': save the lesning images as a numpy array
-                'matlab': save the lesning images as a matlab (.MAT) file
-                'hdf5': save the lensing images as a HDF file
-             
-             output_path: str
-             
-             file_name: str
-             '''
+    '''
+     
+     Args:
+     ______
+     
+     pixel_scales: float
+        The arc-second to pixel conversion factor of each pixel.
+     
+     psf_shape: []
+        Shape of the Gaussian kernel
+     
+     psf_sigma: float
+        Standard deviation for Gaussian kernel
+     
+     grid_sub_size: int
+        The size (sub_size x sub_size) of each unmasked pixels sub-grid.
+     
+     grid_shape: []
+     
+     output_type: str
+        'image': save the lensing images as .png files
+        'numpy': save the lesning images as a numpy array
+        'matlab': save the lesning images as a matlab (.MAT) file
+        'hdf5': save the lensing images as a HDF file
+     
+     output_path: str
+     
+     file_name: str
+     
+    '''
              
     if not os.path.exists(output_path):
         os.makedirs(output_path)
