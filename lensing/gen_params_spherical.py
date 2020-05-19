@@ -172,6 +172,19 @@ class gen_params:
         self.save_params = save_params
         self.save_type = save_type
         
+        '''
+        
+        Args:
+        ______
+        
+        save_params: bool
+           Will save the parameters to specified save type if set to True
+           
+        save_type: str ('csv', 'json')
+        
+        output_path: str
+        '''
+        
     def run(self):
         
         if self.save_params == True:
