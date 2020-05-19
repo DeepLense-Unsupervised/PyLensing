@@ -173,7 +173,7 @@ class gen_params:
     params = pd.DataFrame(params_data['parameters'])
     
     # Constructor
-    def __init__(self, save_params, save_type, output_path='./'):
+    def __init__(self, save_params, save_type='json', output_path='./'):
         self.output_path = output_path
         self.save_params = save_params
         self.save_type = save_type

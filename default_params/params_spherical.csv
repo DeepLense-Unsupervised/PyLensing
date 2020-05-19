@@ -1,0 +1,26 @@
+profile,parameter,distribution,population,priors
+Lensing Galaxy - Sersic Light Profile,x_pos,fixed,1,[0]
+Lensing Galaxy - Sersic Light Profile,y_pos,fixed,1,[0]
+Lensing Galaxy - Sersic Light Profile,redshift,fixed,1,[0.5]
+Lensing Galaxy - Sersic Light Profile,axis_ratio,uniform,5,"[0.5, 1.0]"
+Lensing Galaxy - Sersic Light Profile,orientation,uniform,5,"[0, 6.28318530718]"
+Lensing Galaxy - Sersic Light Profile,intensity,fixed,1,[1.2]
+Lensing Galaxy - Sersic Light Profile,sersic_index,fixed,1,[2.5]
+Lensing Galaxy - Sersic Light Profile,eff_radius,fixed,1,[0.5]
+Dark Matter Halo – Spherical Isothermal,x_pos,fixed,1,[0]
+Dark Matter Halo – Spherical Isothermal,y_pos,fixed,1,[0]
+Dark Matter Halo – Spherical Isothermal,einstein_radius,fixed,1,[1.2]
+External Shear,magnitude,uniform,5,"[0.0, 0.3]"
+External Shear,angle,uniform,5,"[0, 6.28318530718]"
+Lensed Galaxy - Sersic Profile,radial_distance,uniform,5,"[0.0, 1.2]"
+Lensed Galaxy - Sersic Profile,angular_position,uniform,5,"[0, 6.28318530718]"
+Lensed Galaxy - Sersic Profile,redshift,fixed,1,[1.0]
+Lensed Galaxy - Sersic Profile,axis_ratio,uniform,5,"[0.7, 1.0]"
+Lensed Galaxy - Sersic Profile,orientation,uniform,5,"[0, 6.28318530718]"
+Lensed Galaxy - Sersic Profile,intensity,uniform,5,"[0.7, 0.9]"
+Lensed Galaxy - Sersic Profile,sersic_index,fixed,1,[1.5]
+Lensed Galaxy - Sersic Profile,eff_radius,fixed,1,[0.5]
+Spherical,number_of_substructures,fixed,1,[25]
+Spherical,total_mass,fixed,1,[0.01]
+Spherical,radial_distance,uniform,25,"[0.0, 1.0]"
+Spherical,angular_position,uniform,25,"[0, 6.28318530718]"
