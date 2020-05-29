@@ -18,6 +18,7 @@ def gen_data(parameters,
              psf_sigma=0.1,
              grid_sub_size=2,
              grid_shape=[100,100],
+             sub_halo_mass=[0.01],
              output_type='image',
              output_path='./lens_sub_spherical',
              file_name='particle'):
@@ -66,10 +67,10 @@ def gen_data(parameters,
             psf = al.Kernel.from_gaussian(shape_2d=(psf_shape[0], psf_shape[1]), sigma=psf_sigma, pixel_scales=pixel_scales)
             grid = al.Grid.uniform(shape_2d=(grid_shape[0], grid_shape[1]), pixel_scales=pixel_scales, sub_size=grid_sub_size)
 
-            vortex_profiles = []
+            spherical_profiles = []
             
             # Dark Matter Halo
-            vortex_profiles.append(("dmh_profile",al.mp.SphericalIsothermal(centre=(params[8], params[9]), einstein_radius=params[10])))
+            spherical_profiles.append(("dmh_profile",al.mp.SphericalIsothermal(centre=(params[8], params[9]), einstein_radius=params[10])))
                    
             # Get positional parameters for particle substructure
             rad_dist = np.random.uniform( params[25], params[26], int(params[23]) ).tolist()
@@ -78,14 +79,32 @@ def gen_data(parameters,
             pos_args = list(list(itertools.product(rad_dist, ang_pos)))
             random.shuffle(pos_args)
             
-            for j in range(int(params[21])):
-                
-                x0 = params[0] + pos_args[j][0]*math.cos(pos_args[j][1])
-                y0 = params[1] + pos_args[j][0]*math.sin(pos_args[j][1])
-                
-                vortex_profiles.append(("point_mass_profile_" + str(j+1),
-                al.mp.PointMass(centre=(x0,y0), einstein_radius= ((params[22])**0.5)/params[21] * params[10])
-                ))
+            if sub_halo_mass.all() == [0.01]:
+            
+                for j in range(int(params[21])):
+                    
+                    x0 = params[0] + pos_args[j][0]*math.cos(pos_args[j][1])
+                    y0 = params[1] + pos_args[j][0]*math.sin(pos_args[j][1])
+                    
+                    spherical_profiles.append(("point_mass_profile_" + str(j+1),
+                    al.mp.PointMass(centre=(x0,y0), einstein_radius= ((params[22])**0.5)/params[21] * params[10])
+                    ))
+                    
+            if sub_halo_mass.all() != [0.01]:
+            
+                fraction = np.asarray(sub_halo_mass)
+                if fraction.shape[0] != int(params[21]):
+                    raise Exception('Invalid number of sub halos')
+                    sys.exit()
+            
+                for j in range(int(params[21])):
+                    
+                    x0 = params[0] + pos_args[j][0]*math.cos(pos_args[j][1])
+                    y0 = params[1] + pos_args[j][0]*math.sin(pos_args[j][1])
+                    
+                    spherical_profiles.append(("point_mass_profile_" + str(j+1),
+                    al.mp.PointMass(centre=(x0,y0), einstein_radius= ((fraction[j])**0.5)/params[21] * params[10])
+                    ))
         
             # Lens galaxy
             lensing_galaxy = al.Galaxy(
@@ -100,7 +119,7 @@ def gen_data(parameters,
                     sersic_index=params[6],
                 ),
                 # Mass Profile
-                **dict(vortex_profiles),
+                **dict(spherical_profiles),
                 
                 # External Shear
                 shear=al.mp.ExternalShear(magnitude=params[11], phi=params[12]),
@@ -166,7 +185,7 @@ def gen_data(parameters,
     if output_type.lower() == 'matlab':
         
         output_file = os.path.join(output_path, file_name + '.mat')
-        scipy.io.savemat(output_file, mdict={'vortex': lensing_images})
+        scipy.io.savemat(output_file, mdict={'spherical': lensing_images})
         print('Dimensions of the data: {}'.format(lensing_images.shape))
         
     # Dump all the Lensing Images into a HDF file
@@ -174,7 +193,7 @@ def gen_data(parameters,
     
         output_file = os.path.join(output_path, file_name + '.h5')
         with h5py.File(output_file, 'w') as hf:
-            hf.create_dataset("vortex",  data=lensing_images)
+            hf.create_dataset("spherical",  data=lensing_images)
         print('Dimensions of the data: {}'.format(lensing_images.shape))
 
 

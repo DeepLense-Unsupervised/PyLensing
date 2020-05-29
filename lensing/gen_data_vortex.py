@@ -16,6 +16,7 @@ def gen_data(parameters,
              psf_sigma=0.1,
              grid_sub_size=2,
              grid_shape=[100,100],
+             sub_halo_mass=[0.01],
              output_type='image',
              output_path='./lens_sub_vortex',
              file_name='vortex'):
@@ -74,12 +75,27 @@ def gen_data(parameters,
             y_start = params[22] - (vortex_len/2*math.sin(math.radians(params[24])))
             delta = vortex_len/resolution
 
-            # Linear mass distribution for substructure (string of mass on galactic scales)
-            for j in range(resolution):
-                vortex_profiles.append(("point_mass_profile_" + str(j+1),
-                al.mp.PointMass(centre=(x_start + j*delta*math.cos(params[24]), y_start + j*delta*math.sin(params[24])), einstein_radius= ((params[25])**0.5)/resolution * params[10])
-                ))
-        
+            if sub_halo_mass.all() == [0.01]:
+            
+                # Linear mass distribution for substructure (string of mass on galactic scales)
+                for j in range(resolution):
+                    vortex_profiles.append(("point_mass_profile_" + str(j+1),
+                    al.mp.PointMass(centre=(x_start + j*delta*math.cos(params[24]), y_start + j*delta*math.sin(params[24])), einstein_radius= ((params[25])**0.5)/resolution * params[10])
+                    ))
+                    
+            if sub_halo_mass.all() != [0.01]:
+            
+                fraction = np.asarray(sub_halo_mass)
+                if fraction.shape[0] != resolution:
+                    raise Exception('Invalid number of sub halos')
+                    sys.exit()
+            
+                # Linear mass distribution for substructure (string of mass on galactic scales)
+                for j in range(resolution):
+                    vortex_profiles.append(("point_mass_profile_" + str(j+1),
+                    al.mp.PointMass(centre=(x_start + j*delta*math.cos(params[24]), y_start + j*delta*math.sin(params[24])), einstein_radius= ((fraction[j])**0.5)/resolution * params[10])
+                    ))
+            
             # Lens galaxy
             lensing_galaxy = al.Galaxy(
                 redshift=params[2],
