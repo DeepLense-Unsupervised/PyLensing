@@ -10,7 +10,7 @@ from lensing import gen_data_spherical as gends
 import pandas as pd
 import numpy as np
 
-mass_fractions = np.random.uniform(low=0.01, high=0.03, size=(25,))
+mass_fractions = np.random.uniform(low=0.001, high=0.003, size=(25,))
 
 # Generate Lensing Images with Vortex Substructure
 

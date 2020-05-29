@@ -103,7 +103,7 @@ def gen_data(parameters,
                     y0 = params[1] + pos_args[j][0]*math.sin(pos_args[j][1])
                     
                     spherical_profiles.append(("point_mass_profile_" + str(j+1),
-                    al.mp.PointMass(centre=(x0,y0), einstein_radius= ((fraction[j])**0.5)/params[21] * params[10])
+                    al.mp.PointMass(centre=(x0,y0), einstein_radius= ((fraction[j])**0.5) * params[10])
                     ))
         
             # Lens galaxy

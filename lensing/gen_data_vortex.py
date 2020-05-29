@@ -93,7 +93,7 @@ def gen_data(parameters,
                 # Linear mass distribution for substructure (string of mass on galactic scales)
                 for j in range(resolution):
                     vortex_profiles.append(("point_mass_profile_" + str(j+1),
-                    al.mp.PointMass(centre=(x_start + j*delta*math.cos(params[24]), y_start + j*delta*math.sin(params[24])), einstein_radius= ((fraction[j])**0.5)/resolution * params[10])
+                    al.mp.PointMass(centre=(x_start + j*delta*math.cos(params[24]), y_start + j*delta*math.sin(params[24])), einstein_radius= ((fraction[j])**0.5) * params[10])
                     ))
             
             # Lens galaxy
