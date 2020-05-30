@@ -34,7 +34,8 @@ gends.gen_data(params,output_type='Image', grid_shape=[150,150], sub_halo_mass_f
 print('Done!')
 '''
 
-masses = np.random.uniform(low=0.8e10, high=1.2e10, size=(25,))
+#masses = np.random.uniform(low=0.8e10, high=1.2e10, size=(25,))
+masses = getp.draw_sub_masses(25,0.8e10,1.2e10)
 
 # Generate Lensing Images with Vortex Substructure
 

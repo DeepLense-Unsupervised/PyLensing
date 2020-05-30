@@ -1,11 +1,33 @@
 # Author: Pranath Reddy
-# This module is for generating all the different permutations of the parameters
+# This module is for generating all the different permutations of the base parameters and some helper functions
 
 import numpy as np
 import pandas as pd
 import sys
 import itertools
 import json
+
+def draw_sub_masses(n_sub, m_sub_min, m_sub_max, beta = -0.9):
+    """
+    Args:
+    ______
+
+    n_sub: Number of sub halos
+
+    m_sub_min: Minimum mass of the sub halos (in solar mass)
+
+    m_sub_max: Maximum mass of the sub halos (in solar mass)
+
+    beta: slope (negative)
+
+    ______
+
+    credits --> https://github.com/smsharma/mining-for-substructure-lens/blob/8f432b58cecdafd70054fa63f285f3f284fa0720/simulation/population_sim.py#L461
+    """
+
+    u = np.random.uniform(0, 1, size=n_sub)
+    m_low_u, m_high_u = m_sub_min ** (beta + 1), m_sub_max ** (beta + 1)
+    return (m_low_u + (m_high_u - m_low_u) * u) ** (1.0 / (beta + 1.0))
 
 # Decorator function
 def decorator_get_params(function):
