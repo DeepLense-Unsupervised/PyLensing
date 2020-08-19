@@ -1,7 +1,7 @@
 from distutils.core import setup
 setup(
-  name = 'lensing',
-  packages = ['PyLensing'],
+  name = 'PyLensing',
+  packages = ['lensing'],
   version = '0.1',
   license='MIT',
   description = 'A tool for generating lensing images based on PyAutoLens simulations',
