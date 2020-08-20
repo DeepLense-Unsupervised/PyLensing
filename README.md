@@ -1,6 +1,8 @@
 # PyLensing
 A tool for generating lensing images based on PyAutoLens simulations
 
+[Example Notebook](https://github.com/DeepLense-Unsupervised/PyLensing/blob/master/Example_Notebook.ipynb)
+
 ![Lensing Example](https://github.com/PyJedi/PyLensing/blob/master/gitimage.png)
 
 ### Docker Specific Instructions
