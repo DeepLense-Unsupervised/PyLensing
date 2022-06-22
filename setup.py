@@ -10,7 +10,7 @@ setup(
   url = 'https://github.com/DeepLense-Unsupervised/PyLensing',
   keywords = ['Gravitational Lensing', 'Simulation', 'Dark Matter'],
   install_requires=[            
-          'numpy==1.18.3',
+          'numpy==1.22.0',
           'scipy==1.4.1',
           'joblib==0.14.1',
           'Cython==0.29.16',
