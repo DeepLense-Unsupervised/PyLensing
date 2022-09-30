@@ -12,7 +12,7 @@ setup(
   install_requires=[            
           'numpy==1.18.3',
           'scipy==1.4.1',
-          'joblib==0.14.1',
+          'joblib==1.2.0',
           'Cython==0.29.16',
           'pandas==1.0.3',
           'progress==1.5',
