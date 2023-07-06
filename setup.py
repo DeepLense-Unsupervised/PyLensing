@@ -11,7 +11,7 @@ setup(
   keywords = ['Gravitational Lensing', 'Simulation', 'Dark Matter'],
   install_requires=[            
           'numpy==1.18.3',
-          'scipy==1.4.1',
+          'scipy==1.10.0',
           'joblib==0.14.1',
           'Cython==0.29.16',
           'pandas==1.0.3',
